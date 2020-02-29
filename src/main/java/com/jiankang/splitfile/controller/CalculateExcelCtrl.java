@@ -3,6 +3,8 @@ package com.jiankang.splitfile.controller;
 import com.jiankang.splitfile.bean.Model;
 import com.jiankang.splitfile.service.CalculateBillService;
 import com.jiankang.splitfile.service.ExportBillService;
+import com.jiankang.splitfile.service.impl.CalculateBillServiceImpl;
+import com.jiankang.splitfile.service.impl.ExportBillServiceImpl;
 import com.jiankang.splitfile.utils.ExcelUtils;
 import com.jiankang.splitfile.utils.UnZipUtil;
 import org.slf4j.Logger;
@@ -22,6 +24,7 @@ import java.io.IOException;
 import java.util.Map;
 
 @Controller
+@RequestMapping("/calculate")
 public class CalculateExcelCtrl {
 
     private static Logger logger = LoggerFactory.getLogger(SplitFileCtrl.class);
