@@ -1,6 +1,5 @@
-package com.forcecloud.splitfile;
+package com.jiankang.splitfile;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
