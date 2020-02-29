@@ -3,8 +3,6 @@ package com.jiankang.splitfile.controller;
 import com.jiankang.splitfile.bean.Model;
 import com.jiankang.splitfile.service.CalculateBillService;
 import com.jiankang.splitfile.service.ExportBillService;
-import com.jiankang.splitfile.service.impl.CalculateBillServiceImpl;
-import com.jiankang.splitfile.service.impl.ExportBillServiceImpl;
 import com.jiankang.splitfile.utils.ExcelUtils;
 import com.jiankang.splitfile.utils.UnZipUtil;
 import org.slf4j.Logger;
@@ -21,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Controller
@@ -42,9 +41,8 @@ public class CalculateExcelCtrl {
 
     @RequestMapping(value = "/summary", method = RequestMethod.POST)
     @ResponseBody
-    public String uploadAndGetSplitZip(@RequestParam("file") MultipartFile file, @RequestParam("size") String size,
-                                       HttpServletRequest request, HttpServletResponse response) throws IOException {
-
+    public void uploadAndGetSplitZip(@RequestParam("file") MultipartFile file,
+                                     HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         //将zip包解压到一个目录
         File file2 = new File(System.getProperty("java.io.tmpdir") + File.separator + file.getOriginalFilename());
@@ -53,18 +51,13 @@ public class CalculateExcelCtrl {
 
         //获取解压缩的文件路径
         String originalFilename = file.getOriginalFilename();
-        String[] split = originalFilename.split("\\.");
         int index = originalFilename.lastIndexOf(".");
         String fileName = originalFilename.substring(0, index);
         File excelFiles = new File(defaultDir + fileName);
-        Map<String, Model> stringModelMap = calculateBillService.calculateBill(excelFiles);
-        String monthBillFile = exportBillService.makeMonthBill(excelFiles, stringModelMap);
-
-
+        //获取主要bill数据
+        LinkedHashMap<String, Model> stringModelMap = calculateBillService.calculateBill(excelFiles);
+        //导出月度账单
+        exportBillService.makeMonthBill(excelFiles, stringModelMap, request, response);
         file2.deleteOnExit();
-
-
-        return "success";
-
     }
 }

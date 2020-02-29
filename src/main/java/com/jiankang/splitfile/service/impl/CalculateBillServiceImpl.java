@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Service
@@ -27,8 +28,8 @@ public class CalculateBillServiceImpl implements CalculateBillService {
     ExcelUtils excelUtils;
 
     @Override
-    public  Map<String, Model> calculateBill(File excelFiles) {
-        Map<String, Model> stringModelMap = new HashMap<>();
+    public LinkedHashMap<String, Model> calculateBill(File excelFiles) {
+        LinkedHashMap<String, Model> stringModelMap = new LinkedHashMap<String, Model>();
         if (excelFiles.isDirectory()) {
             File[] files = excelFiles.listFiles();
             for (int i = 0; i < files.length; i++) {

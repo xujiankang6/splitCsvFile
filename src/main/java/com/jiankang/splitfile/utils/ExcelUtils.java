@@ -135,7 +135,7 @@ public class ExcelUtils {
      * @param map
      * @return
      */
-    public  Map<String, Model> dealWorkBook(Workbook workBook, Map<String, Model> map) {
+    public  LinkedHashMap<String, Model> dealWorkBook(Workbook workBook, LinkedHashMap<String, Model> map) {
         Map<Integer, List<String>> data = transferExcel(workBook);
         Set<Integer> keys = data.keySet();
         for (int row = 3; row < keys.size() - 1; row++) {

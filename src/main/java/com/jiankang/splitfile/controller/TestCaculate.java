@@ -20,7 +20,7 @@ import java.util.*;
 public class TestCaculate {
     public static void main(String[] args) throws IOException, InvalidFormatException {
         File file = new File("C:\\Users\\徐健康\\Desktop\\aaa");
-        Map<String, Model> stringModelMap = new HashMap<>();
+        LinkedHashMap<String, Model> stringModelMap = new LinkedHashMap<String, Model>();
 
         ExcelUtils excelUtils = new ExcelUtils();
         Map<Integer, List<String>> data= Collections.emptyMap();
@@ -55,14 +55,12 @@ public class TestCaculate {
         for (Map.Entry<String, Model> entry : stringModelMap.entrySet()) {
             sum+=entry.getValue().getSumPrice();
         }
+        for (Map.Entry<String, Model> entry : stringModelMap.entrySet()) {
+            System.out.println(entry.getKey()+"  "+entry.getValue());
+        }
 
 
-        //导出excel排版
-        XSSFWorkbook workbook = new XSSFWorkbook();
-        List<String> strings = data.get(0);
-        XSSFSheet sheet = workbook.createSheet(data.get(0).get(0)+"月度账单");
-        XSSFRow rowm = sheet.createRow(0);
-        XSSFCell cellTitle = rowm.createCell(0);
+
     }
 
 

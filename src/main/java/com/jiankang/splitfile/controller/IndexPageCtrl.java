@@ -23,7 +23,7 @@ public class IndexPageCtrl {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView index() {
         ModelAndView m = new ModelAndView();
-        m.setViewName("test");
+        m.setViewName("calculate");
         return m;
     }
 
