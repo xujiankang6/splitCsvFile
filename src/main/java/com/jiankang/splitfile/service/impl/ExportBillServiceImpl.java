@@ -186,7 +186,6 @@ public class ExportBillServiceImpl implements ExportBillService {
         }
 
         stopWatch.stop();
-        String result = "导出月度账单";
         logger.info("制作月度账单成功，共耗时：{} s", stopWatch.getTotalTimeSeconds());
 
     }

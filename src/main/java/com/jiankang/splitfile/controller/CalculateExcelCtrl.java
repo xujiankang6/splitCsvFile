@@ -4,6 +4,7 @@ import com.jiankang.splitfile.bean.Model;
 import com.jiankang.splitfile.service.CalculateBillService;
 import com.jiankang.splitfile.service.ExportBillService;
 import com.jiankang.splitfile.utils.ExcelUtils;
+import com.jiankang.splitfile.utils.ForceDeleteFilesUtils;
 import com.jiankang.splitfile.utils.UnZipUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,16 +22,20 @@ import java.io.File;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @Controller
 @RequestMapping("/calculate")
 public class CalculateExcelCtrl {
 
-    private static Logger logger = LoggerFactory.getLogger(SplitFileCtrl.class);
+    private static Logger logger = LoggerFactory.getLogger(CalculateExcelCtrl.class);
     private static String defaultDir = System.getProperty("java.io.tmpdir") + File.separator + "menu" + File.separator;
 
     @Autowired
     ExcelUtils excelUtils;
+
+    @Autowired
+    ForceDeleteFilesUtils forceDeleteFilesUtils;
 
     @Autowired
     CalculateBillService calculateBillService;
@@ -59,6 +64,6 @@ public class CalculateExcelCtrl {
         //导出月度账单
         exportBillService.makeMonthBill(excelFiles, stringModelMap, request, response);
         file2.deleteOnExit();
-        
+        forceDeleteFilesUtils.deleteAllFilesOfDir(new File(defaultDir));
     }
 }

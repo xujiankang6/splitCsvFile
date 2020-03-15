@@ -1,8 +1,11 @@
 package com.jiankang.splitfile.utils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
+import java.util.concurrent.TimeUnit;
 
 /*
  *@create by jiankang
@@ -10,6 +13,8 @@ import java.io.File;
  */
 @Component
 public class ForceDeleteFilesUtils {
+
+    Logger logger = LoggerFactory.getLogger(ForceDeleteFilesUtils.class);
 
     /**
      * 删除文件夹（强制删除）
@@ -49,7 +54,7 @@ public class ForceDeleteFilesUtils {
         if (file.exists()) {
             file.delete();
             result = true;
-            System.out.println("文件已经被成功删除");
+            logger.info("{} 文件已经被成功删除",file.getName());
         }
         return result;
     }
