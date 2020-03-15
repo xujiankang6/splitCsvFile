@@ -46,7 +46,6 @@ public class SplitFileCtrl {
                                        HttpServletRequest request, HttpServletResponse response) {
         try {
             InputStream inputStream = file.getInputStream();
-
             String originalFilename = file.getOriginalFilename();
             String[] split = originalFilename.split("\\.");
             String type = split[split.length - 1];

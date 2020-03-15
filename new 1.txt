@@ -1,0 +1,80 @@
+content=您有医生定级未审批，请尽快到我的审批-分级历史中处理。
+客户认领: http://localhost:8098/rest/data_record/customer_select_history
+
+
+{
+    "head":{
+        "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI4NjM4NTcwNTgxMTMwMzExIiwidGVuYW50SWQiOiJUODYzNTUzNTQ0MTMwMDQ4MCIsImRldmljZVR5cGUiOiJwYyIsImV4cCI6MTU4ODM4NDQyNywibmJmIjoxNTgzMjAwMTI3fQ.nxtA8GuglBLy5w7wofWtSA8vWhgfpNFYl34zQ2Whht4"
+    },
+    "body":{
+        "customer":"1603735163670868",
+        "customer_type":"hcp",
+        "parent_customer":"1603735154125142",
+        "record_type":"add",
+        "status":"0",
+        "profile":8635545016733702,
+        "bu":"丹酚_医学信息沟通专员",
+        "_cascade":{
+            "create":{
+                "customer_segmentation_history_list":[
+                    {
+                        "product":8638455998671879,
+                        "is_kol":"TRUE",
+                        "status":"0",
+                        "submit_time":1583200598394,
+                        "is_speaker":"2",
+                        "support_degree":"1",
+                        "avg_prescription_qty":"1",
+                        "potential":"a",
+                        "personal_segmentation":"a1"
+                    }
+                ]
+            }
+        }
+    }
+}
+
+
+新建医生：
+https://stg-tm.crmpower.cn/rest/data_record/customer
+
+
+{
+    "head":{
+        "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI4NjM4NTcwNTgxMTMwMzExIiwidGVuYW50SWQiOiJUODYzNTUzNTQ0MTMwMDQ4MCIsImRldmljZVR5cGUiOiJwYyIsImV4cCI6MTU4ODM4NTQ5MSwibmJmIjoxNTgzMjAxMTkxfQ.rNR6VOPo75A3r8ONYU-tsoWVbU3j3N5ndH1yNZkdaxI"
+    },
+    "body":{
+        "name":"测试见",
+        "parent_id":1620788553601432,
+        "listed_dept":"q",
+        "department":"1",
+        "gender":"male",
+        "birthday":1583201627792,
+        "admin_title":"1",
+        "major_title":"zc01",
+        "hcp_type":"ht01",
+        "phone":"18438595560",
+        "weekly_outpatient_days":"1",
+        "daily_patient_number":"1",
+        "bed_qty":"1",
+        "bed_turnover_rate":0.01,
+        "record_type":"hcp",
+        "_cascade":{
+            "create":{
+                "customer_segmentation_history_list":[
+                    {
+                        "product":8638455998671878,
+                        "is_kol":"TRUE",
+                        "status":"0",
+                        "submit_time":1583201688045,
+                        "is_speaker":"1",
+                        "support_degree":"1",
+                        "avg_prescription_qty":"1",
+                        "potential":"a",
+                        "personal_segmentation":"a1"
+                    }
+                ]
+            }
+        }
+    }
+}

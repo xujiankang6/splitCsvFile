@@ -19,6 +19,9 @@ import java.util.*;
 //测试计算准确度
 public class TestCaculate {
     public static void main(String[] args) throws IOException, InvalidFormatException {
+
+
+
         File file = new File("C:\\Users\\徐健康\\Desktop\\aaa");
         LinkedHashMap<String, Model> stringModelMap = new LinkedHashMap<String, Model>();
 
@@ -58,6 +61,7 @@ public class TestCaculate {
         for (Map.Entry<String, Model> entry : stringModelMap.entrySet()) {
             System.out.println(entry.getKey()+"  "+entry.getValue());
         }
+
 
 
 
