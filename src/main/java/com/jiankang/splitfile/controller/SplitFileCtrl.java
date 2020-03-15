@@ -3,6 +3,11 @@ package com.jiankang.splitfile.controller;
 
 import com.jiankang.splitfile.utils.ExportZipUtils;
 import com.jiankang.splitfile.utils.SplitUtils;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.util.CellRangeAddress;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +19,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/split")
 public class SplitFileCtrl {
 
     private static Logger logger = LoggerFactory.getLogger(SplitFileCtrl.class);
@@ -38,7 +46,6 @@ public class SplitFileCtrl {
                                        HttpServletRequest request, HttpServletResponse response) {
         try {
             InputStream inputStream = file.getInputStream();
-
             String originalFilename = file.getOriginalFilename();
             String[] split = originalFilename.split("\\.");
             String type = split[split.length - 1];
@@ -56,13 +63,8 @@ public class SplitFileCtrl {
         return "success";
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView index() {
-        ModelAndView m = new ModelAndView();
-        m.setViewName("index");
-        return m;
 
-    }
+
 
 
 }

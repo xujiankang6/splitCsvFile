@@ -135,45 +135,8 @@ public class ExcelUtils {
      * @param map
      * @return
      */
-    public static Map<String, Model> dealWorkBook(Workbook workBook, Map<String, Model> map) {
-        Sheet sheet = workBook.getSheetAt(0); // 获取第一个sheet
-        Map<Integer, List<String>> data = new HashMap<Integer, List<String>>(); //第一个参数表示行数 第二个List保存该行的cell数据
-        int i = 0;
-        for (Row row : sheet) {
-            data.put(i, new ArrayList<String>());
-            for (Cell cell : row) { // 遍历当前行的所有cell
-                switch (cell.getCellType()) {
-                    case STRING:
-                        data.get(i).add(cell.getRichStringCellValue().getString());
-                        break;
-                    case _NONE:
-                        break;
-                    case NUMERIC:
-                        if (DateUtil.isCellDateFormatted(cell)) {
-                            data.get(i).add(String.valueOf(cell.getDateCellValue()));
-                        } else {
-                            data.get(i).add(String.valueOf(cell.getNumericCellValue()));
-                        }
-                        break;
-                    case BOOLEAN:
-                        data.get(i).add(String.valueOf(cell.getBooleanCellValue()));
-                        break;
-                    case FORMULA:
-                        try {
-                            data.get(i).add(String.valueOf(cell.getStringCellValue()));
-                        } catch (IllegalStateException e) {
-                            data.get(i).add(String.valueOf(cell.getNumericCellValue()));
-                        }
-                        break;
-                    case BLANK:
-                        data.get(i).add("");
-                        break;
-                    case ERROR:
-                        break;
-                }
-            }
-            i++;
-        }
+    public  LinkedHashMap<String, Model> dealWorkBook(Workbook workBook, LinkedHashMap<String, Model> map) {
+        Map<Integer, List<String>> data = transferExcel(workBook);
         Set<Integer> keys = data.keySet();
         for (int row = 3; row < keys.size() - 1; row++) {
             List<String> strings = data.get(row);
@@ -229,5 +192,48 @@ public class ExcelUtils {
             }
         }
         return map;
+    }
+
+
+   public  Map<Integer, List<String>> transferExcel(Workbook workBook){
+        Sheet sheet = workBook.getSheetAt(0); // 获取第一个sheet
+        Map<Integer, List<String>> data = new HashMap<Integer, List<String>>(); //第一个参数表示行数 第二个List保存该行的cell数据
+        int i = 0;
+        for (Row row : sheet) {
+            data.put(i, new ArrayList<String>());
+            for (Cell cell : row) { // 遍历当前行的所有cell
+                switch (cell.getCellType()) {
+                    case STRING:
+                        data.get(i).add(cell.getRichStringCellValue().getString());
+                        break;
+                    case _NONE:
+                        break;
+                    case NUMERIC:
+                        if (DateUtil.isCellDateFormatted(cell)) {
+                            data.get(i).add(String.valueOf(cell.getDateCellValue()));
+                        } else {
+                            data.get(i).add(String.valueOf(cell.getNumericCellValue()));
+                        }
+                        break;
+                    case BOOLEAN:
+                        data.get(i).add(String.valueOf(cell.getBooleanCellValue()));
+                        break;
+                    case FORMULA:
+                        try {
+                            data.get(i).add(String.valueOf(cell.getStringCellValue()));
+                        } catch (IllegalStateException e) {
+                            data.get(i).add(String.valueOf(cell.getNumericCellValue()));
+                        }
+                        break;
+                    case BLANK:
+                        data.get(i).add("");
+                        break;
+                    case ERROR:
+                        break;
+                }
+            }
+            i++;
+        }
+        return data;
     }
 }

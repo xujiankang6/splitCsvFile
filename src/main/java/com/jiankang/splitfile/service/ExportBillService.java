@@ -3,7 +3,10 @@ package com.jiankang.splitfile.service;
 import com.jiankang.splitfile.bean.Model;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Service
@@ -15,5 +18,5 @@ public interface ExportBillService {
      * @return
      */
 
-    public String makeMonthBill(File excelFiles,Map<String, Model> map);
+    public void makeMonthBill(File excelFiles, LinkedHashMap<String, Model> map, HttpServletRequest request, HttpServletResponse response);
 }

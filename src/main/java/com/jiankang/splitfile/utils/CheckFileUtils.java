@@ -2,12 +2,15 @@ package com.jiankang.splitfile.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collections;
 
+
+@Component
 public class CheckFileUtils {
 
     private static Logger logger = LoggerFactory.getLogger(CheckFileUtils.class);

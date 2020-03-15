@@ -1,2 +1,15 @@
 server:
   port: 9300
+#spring:
+#  mvc:
+#    static-path-pattern: /**
+#  resources:
+#    static-locations: classpath:/static/
+#  thymeleaf:
+#    cache: false
+#    encoding: utf-8
+#    mode: LEGACYHTML5
+#    prefix: classpath:/templates/
+#    servlet:
+#      content-type: text/html
+#    suffix: .html

@@ -4,11 +4,13 @@ import com.jiankang.splitfile.bean.Model;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 
 @Service
 public interface CalculateBillService {
 
-    public Map<String, Model> calculateBill(File excelFiles);
+
+    public LinkedHashMap<String, Model> calculateBill(File excelFiles);
 }
