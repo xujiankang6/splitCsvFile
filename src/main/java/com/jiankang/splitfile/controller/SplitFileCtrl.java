@@ -2,6 +2,7 @@ package com.jiankang.splitfile.controller;
 
 
 import com.jiankang.splitfile.utils.ExportZipUtils;
+import com.jiankang.splitfile.utils.ForceDeleteFilesUtils;
 import com.jiankang.splitfile.utils.SplitUtils;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -22,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -39,6 +41,9 @@ public class SplitFileCtrl {
     @Autowired
     ExportZipUtils exportZipUtils;
 
+    @Autowired
+    ForceDeleteFilesUtils forceDeleteFilesUtils;
+
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     @ResponseBody
@@ -55,8 +60,9 @@ public class SplitFileCtrl {
             logger.info("文件信息：文件名：{}  文件类型： {}" +
                             "  文件大小：{}MB   要求拆分文件最大行数： {}", fileName, type,
                     file.getSize() / 1024 / 1024, splitSize);
-            String zipPath = splitUtils.getZipPath(inputStream, fileName, splitSize);
+            String zipPath = SplitUtils.getCsvZipPath(inputStream, fileName, splitSize);
             exportZipUtils.zipExport(zipPath, request, response);
+            forceDeleteFilesUtils.deleteAllFilesOfDir(new File(zipPath));
         } catch (Exception e) {
             e.printStackTrace();
         }

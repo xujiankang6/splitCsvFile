@@ -5,7 +5,8 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.4.RELEASE</version>
+        <version>2.2.2.RELEASE</version>
+
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.jiankang</groupId>
@@ -85,7 +86,11 @@
             <artifactId>poi-ooxml</artifactId>
             <version>4.0.1</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot</artifactId>
+            <version>2.2.2.RELEASE</version>
+        </dependency>
 
 
     </dependencies>
